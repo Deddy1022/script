@@ -5,8 +5,8 @@ const serverIP = "192.168.1.10";
 const remoteExportPath = "/home/studia/disk_export";
 const remoteSourceBasePath = "/share/smb/CNAV_TOURS/Année\\ 1991";
 
-const start = 201;
-const end = 400;
+const start = parseInt(process.argv[2], 10);
+const end = parseInt(process.argv[3], 10);
 
 function generateFolderName(base, number) {
   return `${base}_${number}`;
@@ -40,7 +40,6 @@ function executeRemoteCommand(command) {
       } catch (error) {
         continue;
       }
-
 
       const command = `cd ${remoteSourceBasePath} && zip -r ${zipFile} ${folderName}`;
 
